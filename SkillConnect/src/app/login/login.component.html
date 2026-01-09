@@ -25,6 +25,10 @@
           <input type="password" formControlName="password" placeholder="Password" />
         </label>
 
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
         <a class="forgot" routerLink="/forgot-password"> Forgot the password? </a>
 
         <button type="submit" class="primary-btn">Login</button>
