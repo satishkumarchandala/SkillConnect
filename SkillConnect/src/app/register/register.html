@@ -12,7 +12,7 @@
           type="text" 
           id="fullName" 
           name="fullName" 
-          [(ngModel)]="user.fullName" 
+          [(ngModel)]="customer.fullName" 
           required 
           class="form-control"
           placeholder="Enter your full name">
@@ -24,7 +24,7 @@
           type="email" 
           id="email" 
           name="email" 
-          [(ngModel)]="user.email" 
+          [(ngModel)]="customer.email" 
           required 
           email
           class="form-control"
@@ -37,7 +37,7 @@
           type="tel" 
           id="mobileNumber" 
           name="mobileNumber" 
-          [(ngModel)]="user.mobileNumber" 
+          [(ngModel)]="customer.mobileNumber" 
           required 
           pattern="[0-9]{10}"
           class="form-control"
@@ -50,7 +50,7 @@
           type="password" 
           id="password" 
           name="password" 
-          [(ngModel)]="user.password" 
+          [(ngModel)]="customer.password" 
           required 
           minlength="6"
           class="form-control"
@@ -63,7 +63,7 @@
           type="password" 
           id="confirmPassword" 
           name="confirmPassword" 
-          [(ngModel)]="user.confirmPassword" 
+          [(ngModel)]="customer.confirmPassword" 
           required 
           class="form-control"
           placeholder="Re-enter password">
@@ -73,26 +73,26 @@
       </div>
 
       <div class="form-group">
-        <label for="userType">I am a *</label>
+        <label for="customerType">I am a *</label>
         <div class="radio-group">
           <label class="radio-label">
             <input 
               type="radio" 
-              name="userType" 
-              value="user" 
-              [(ngModel)]="user.userType" 
-              (change)="onUserTypeChange()" 
+              name="customerType" 
+              value="customer" 
+              [(ngModel)]="customer.customerType" 
+              (change)="onCustomerTypeChange()" 
               required>
             <span class="radio-custom"></span>
-            User
+            Customer
           </label>
           <label class="radio-label">
             <input 
               type="radio" 
-              name="userType" 
+              name="customerType" 
               value="service-provider" 
-              [(ngModel)]="user.userType" 
-              (change)="onUserTypeChange()" 
+              [(ngModel)]="customer.customerType" 
+              (change)="onCustomerTypeChange()" 
               required>
             <span class="radio-custom"></span>
             Service Provider
@@ -100,12 +100,12 @@
         </div>
       </div>
 
-      <div class="form-group" *ngIf="user.userType === 'service-provider'">
+      <div class="form-group" *ngIf="customer.customerType === 'service-provider'">
         <label for="serviceType">Service Type *</label>
         <select 
           id="serviceType" 
           name="serviceType" 
-          [(ngModel)]="user.serviceType" 
+          [(ngModel)]="customer.serviceType" 
           required 
           class="form-control">
           <option value="" disabled selected>Select your service</option>
@@ -116,12 +116,16 @@
       <button 
         type="submit" 
         class="btn-register" 
-        [disabled]="!registerForm.valid || (user.userType === 'service-provider' && !user.serviceType)">
+        [disabled]="!registerForm.valid || (customer.customerType === 'service-provider' && !customer.serviceType)">
         Register
       </button>
 
+      <div *ngIf="registrationSuccess" class="success-message">
+        Registration successful! Redirecting to login...
+      </div>
+
       <div class="login-link">
-        Already have an account? <a href="#">Login here</a>
+        Already have an account? <a routerLink="/login">Login here</a>
       </div>
     </form>
   </div>
