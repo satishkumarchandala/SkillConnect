@@ -1,0 +1,128 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h1>Create Account</h1>
+      <p>Join SkillConnect today</p>
+    </div>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="register-form">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          name="fullName" 
+          [(ngModel)]="user.fullName" 
+          required 
+          class="form-control"
+          placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="user.email" 
+          required 
+          email
+          class="form-control"
+          placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNumber">Mobile Number *</label>
+        <input 
+          type="tel" 
+          id="mobileNumber" 
+          name="mobileNumber" 
+          [(ngModel)]="user.mobileNumber" 
+          required 
+          pattern="[0-9]{10}"
+          class="form-control"
+          placeholder="Enter 10-digit mobile number">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password *</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          [(ngModel)]="user.password" 
+          required 
+          minlength="6"
+          class="form-control"
+          placeholder="Enter password (min 6 characters)">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password *</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          name="confirmPassword" 
+          [(ngModel)]="user.confirmPassword" 
+          required 
+          class="form-control"
+          placeholder="Re-enter password">
+        <div *ngIf="passwordMismatch" class="error-message">
+          Passwords do not match
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="userType">I am a *</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input 
+              type="radio" 
+              name="userType" 
+              value="user" 
+              [(ngModel)]="user.userType" 
+              (change)="onUserTypeChange()" 
+              required>
+            <span class="radio-custom"></span>
+            User
+          </label>
+          <label class="radio-label">
+            <input 
+              type="radio" 
+              name="userType" 
+              value="service-provider" 
+              [(ngModel)]="user.userType" 
+              (change)="onUserTypeChange()" 
+              required>
+            <span class="radio-custom"></span>
+            Service Provider
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="user.userType === 'service-provider'">
+        <label for="serviceType">Service Type *</label>
+        <select 
+          id="serviceType" 
+          name="serviceType" 
+          [(ngModel)]="user.serviceType" 
+          required 
+          class="form-control">
+          <option value="" disabled selected>Select your service</option>
+          <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
+        </select>
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn-register" 
+        [disabled]="!registerForm.valid || (user.userType === 'service-provider' && !user.serviceType)">
+        Register
+      </button>
+
+      <div class="login-link">
+        Already have an account? <a href="#">Login here</a>
+      </div>
+    </form>
+  </div>
+</div>
