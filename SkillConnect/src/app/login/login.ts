@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class Login {
   credentials = {
-    email: '',
+    mobileNumber: '',
     password: ''
   };
 
@@ -27,7 +27,7 @@ export class Login {
     
     // Find user with matching credentials
     const user = users.find((u: any) => 
-      u.email === this.credentials.email && u.password === this.credentials.password
+      u.mobileNumber === this.credentials.mobileNumber && u.password === this.credentials.password
     );
 
     if (user) {
@@ -37,7 +37,7 @@ export class Login {
       // Redirect to home page
       this.router.navigate(['/home']);
     } else {
-      this.errorMessage = 'Invalid email or password';
+      this.errorMessage = 'Invalid mobile number or password';
     }
   }
 

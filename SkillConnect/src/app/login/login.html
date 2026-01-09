@@ -7,16 +7,16 @@
 
     <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
-        <label for="email">Email Address *</label>
+        <label for="mobileNumber">Mobile Number *</label>
         <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          [(ngModel)]="credentials.email" 
+          type="tel" 
+          id="mobileNumber" 
+          name="mobileNumber" 
+          [(ngModel)]="credentials.mobileNumber" 
           required 
-          email
+          pattern="[0-9]{10}"
           class="form-control"
-          placeholder="Enter your email">
+          placeholder="Enter your mobile number">
       </div>
 
       <div class="form-group">
