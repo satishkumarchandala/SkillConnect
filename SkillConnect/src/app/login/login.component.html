@@ -1,0 +1,58 @@
+<main class="login-layout">
+  <!-- LEFT IMAGE GRID -->
+  <section class="visual">
+    
+  </section>
+
+  <!-- RIGHT LOGIN CARD -->
+  <section class="form-area">
+
+    <!-- TOP REGISTER -->
+    <div class="top-register">
+      <span>Don’t have an account?</span>
+      <a routerLink="/register">Sign up</a>
+    </div>
+
+    <div class="card">
+      <header>
+        <h1>Sign in to <span>SkillConnect</span></h1>
+        <p>Welcome to SkillConnect, please enter your login details below.</p>
+      </header>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <label class="field">
+          <input
+            type="tel"
+            formControlName="mobile"
+            placeholder="Mobile Number"
+          />
+        </label>
+
+        <label class="field">
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+        </label>
+
+        <a class="forgot" routerLink="/forgot-password">
+          Forgot the password?
+        </a>
+
+        <button type="submit" class="primary-btn">Login</button>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <button type="button" class="google-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
+          Sign in with Google
+        </button>
+
+      </form>
+    </div>
+  </section>
+</main>
