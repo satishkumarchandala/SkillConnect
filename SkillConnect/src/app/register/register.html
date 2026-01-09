@@ -1,132 +1,119 @@
-<div class="register-container">
-  <div class="register-card">
-    <div class="register-header">
-      <h1>Create Account</h1>
-      <p>Join SkillConnect today</p>
+<main class="login-layout">
+
+  <!-- LEFT PANEL (SAME AS LOGIN) -->
+  <section class="visual">
+    
+  </section>
+
+  <!-- RIGHT PANEL -->
+  <section class="form-area">
+
+    <!-- TOP LOGIN -->
+    <div class="top-register">
+      <span>Already have an account?</span>
+      <a routerLink="/login">Login</a>
     </div>
 
-    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="register-form">
-      <div class="form-group">
-        <label for="fullName">Full Name *</label>
-        <input 
-          type="text" 
-          id="fullName" 
-          name="fullName" 
-          [(ngModel)]="customer.fullName" 
-          required 
-          class="form-control"
-          placeholder="Enter your full name">
-      </div>
+    <div class="card">
+      <header>
+        <h1>Create <span>Account</span></h1>
+        <p>Join SkillConnect today</p>
+      </header>
 
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          [(ngModel)]="customer.email" 
-          required 
+      <form #registerForm="ngForm"
+            (ngSubmit)="onSubmit()"
+            class="register-form"
+            novalidate>
+
+        <input
+          type="text"
+          name="fullName"
+          [(ngModel)]="customer.fullName"
+          required
+          placeholder="Full Name" />
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="customer.email"
+          required
           email
-          class="form-control"
-          placeholder="Enter your email">
-      </div>
+          placeholder="Email Address" />
 
-      <div class="form-group">
-        <label for="mobileNumber">Mobile Number *</label>
-        <input 
-          type="tel" 
-          id="mobileNumber" 
-          name="mobileNumber" 
-          [(ngModel)]="customer.mobileNumber" 
-          required 
+        <input
+          type="tel"
+          name="mobileNumber"
+          [(ngModel)]="customer.mobileNumber"
+          required
           pattern="[0-9]{10}"
-          class="form-control"
-          placeholder="Enter 10-digit mobile number">
-      </div>
+          placeholder="Mobile Number" />
 
-      <div class="form-group">
-        <label for="password">Password *</label>
-        <input 
-          type="password" 
-          id="password" 
-          name="password" 
-          [(ngModel)]="customer.password" 
-          required 
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="customer.password"
+          required
           minlength="6"
-          class="form-control"
-          placeholder="Enter password (min 6 characters)">
-      </div>
+          placeholder="Password" />
 
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password *</label>
-        <input 
-          type="password" 
-          id="confirmPassword" 
-          name="confirmPassword" 
-          [(ngModel)]="customer.confirmPassword" 
-          required 
-          class="form-control"
-          placeholder="Re-enter password">
+        <input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="customer.confirmPassword"
+          required
+          placeholder="Confirm Password" />
+
         <div *ngIf="passwordMismatch" class="error-message">
           Passwords do not match
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="customerType">I am a *</label>
+        <!-- CUSTOMER TYPE -->
         <div class="radio-group">
-          <label class="radio-label">
-            <input 
-              type="radio" 
-              name="customerType" 
-              value="customer" 
-              [(ngModel)]="customer.customerType" 
-              (change)="onCustomerTypeChange()" 
-              required>
-            <span class="radio-custom"></span>
+          <label>
+            <input type="radio"
+                   name="customerType"
+                   value="customer"
+                   [(ngModel)]="customer.customerType"
+                   (change)="onCustomerTypeChange()"
+                   required />
             Customer
           </label>
-          <label class="radio-label">
-            <input 
-              type="radio" 
-              name="customerType" 
-              value="service-provider" 
-              [(ngModel)]="customer.customerType" 
-              (change)="onCustomerTypeChange()" 
-              required>
-            <span class="radio-custom"></span>
+
+          <label>
+            <input type="radio"
+                   name="customerType"
+                   value="service-provider"
+                   [(ngModel)]="customer.customerType"
+                   (change)="onCustomerTypeChange()"
+                   required />
             Service Provider
           </label>
         </div>
-      </div>
 
-      <div class="form-group" *ngIf="customer.customerType === 'service-provider'">
-        <label for="serviceType">Service Type *</label>
-        <select 
-          id="serviceType" 
-          name="serviceType" 
-          [(ngModel)]="customer.serviceType" 
-          required 
-          class="form-control">
-          <option value="" disabled selected>Select your service</option>
-          <option *ngFor="let service of serviceTypes" [value]="service">{{ service }}</option>
+        <!-- SERVICE TYPE -->
+        <select *ngIf="customer.customerType === 'service-provider'"
+                name="serviceType"
+                [(ngModel)]="customer.serviceType"
+                required>
+          <option value="" disabled selected>Select Service Type</option>
+          <option *ngFor="let service of serviceTypes" [value]="service">
+            {{ service }}
+          </option>
         </select>
-      </div>
 
-      <button 
-        type="submit" 
-        class="btn-register" 
-        [disabled]="!registerForm.valid || (customer.customerType === 'service-provider' && !customer.serviceType)">
-        Register
-      </button>
+        <button type="submit"
+                class="primary-btn"
+                [disabled]="!registerForm.valid ||
+                (customer.customerType === 'service-provider' && !customer.serviceType)">
+          Register
+        </button>
 
-      <div *ngIf="registrationSuccess" class="success-message">
-        Registration successful! Redirecting to login...
-      </div>
+        <div *ngIf="registrationSuccess" class="success-message">
+          Registration successful! Redirecting to login...
+        </div>
 
-      <div class="login-link">
-        Already have an account? <a routerLink="/login">Login here</a>
-      </div>
-    </form>
-  </div>
-</div>
+      </form>
+    </div>
+  </section>
+
+</main>
