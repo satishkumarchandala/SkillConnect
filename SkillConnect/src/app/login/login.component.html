@@ -1,12 +1,9 @@
 <main class="login-layout">
   <!-- LEFT IMAGE GRID -->
-  <section class="visual">
-    
-  </section>
+  <section class="visual"></section>
 
   <!-- RIGHT LOGIN CARD -->
   <section class="form-area">
-
     <!-- TOP REGISTER -->
     <div class="top-register">
       <span>Don’t have an account?</span>
@@ -20,26 +17,15 @@
       </header>
 
       <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-
         <label class="field">
-          <input
-            type="tel"
-            formControlName="mobile"
-            placeholder="Mobile Number"
-          />
+          <input type="tel" formControlName="mobile" placeholder="Mobile Number" />
         </label>
 
         <label class="field">
-          <input
-            type="password"
-            formControlName="password"
-            placeholder="Password"
-          />
+          <input type="password" formControlName="password" placeholder="Password" />
         </label>
 
-        <a class="forgot" routerLink="/forgot-password">
-          Forgot the password?
-        </a>
+        <a class="forgot" routerLink="/forgot-password"> Forgot the password? </a>
 
         <button type="submit" class="primary-btn">Login</button>
 
@@ -51,7 +37,6 @@
           <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
           Sign in with Google
         </button>
-
       </form>
     </div>
   </section>

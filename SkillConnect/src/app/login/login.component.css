@@ -5,19 +5,16 @@
   grid-template-columns: 1.2fr 1fr;
   background: #f0f6fc;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 30px;
-
+  border-radius: 30px;
 }
 
 /* LEFT PANEL */
 .visual {
   padding: 2rem;
-  background:url('https://www.lattaplumbing.com/wp-content/uploads/2019/10/LattaPlumbing_918319088.jpg') no-repeat;
-    background-size: contain;
-        border-radius: 30px;
-        
-
-  
+  background: url('https://www.lattaplumbing.com/wp-content/uploads/2019/10/LattaPlumbing_918319088.jpg')
+    no-repeat;
+  background-size: contain;
+  border-radius: 30px;
 }
 
 .grid {
@@ -53,8 +50,12 @@
   margin-top: 0.5rem;
 }
 
-.orange { background: #d4633f; }
-.green { background: #66b48a; }
+.orange {
+  background: #d4633f;
+}
+.green {
+  background: #66b48a;
+}
 
 /* RIGHT PANEL */
 .form-area {
@@ -150,7 +151,7 @@ input:focus {
 
 .divider::before,
 .divider::after {
-  content: "";
+  content: '';
   flex: 1;
   height: 1px;
   background: #e5e7eb;
