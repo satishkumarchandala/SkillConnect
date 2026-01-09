@@ -1,0 +1,157 @@
+<div class="home-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-brand">
+        <h1>SkillConnect</h1>
+      </div>
+      
+      <ul class="navbar-menu">
+        <li>
+          <a 
+            [class.active]="activeSection === 'home'" 
+            (click)="setActiveSection('home')" 
+            routerLink="/home">
+            <span class="menu-icon">🏠</span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a 
+            [class.active]="activeSection === 'services'" 
+            (click)="setActiveSection('services')" 
+            routerLink="/home">
+            <span class="menu-icon">🛠️</span>
+            Services
+          </a>
+        </li>
+        <li>
+          <a 
+            [class.active]="activeSection === 'requests'" 
+            (click)="setActiveSection('requests')" 
+            routerLink="/home">
+            <span class="menu-icon">📋</span>
+            Requests
+          </a>
+        </li>
+        <li>
+          <a 
+            [class.active]="activeSection === 'profile'" 
+            (click)="setActiveSection('profile')" 
+            routerLink="/home">
+            <span class="menu-icon">👤</span>
+            Profile
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="content-container">
+      <!-- Home Section -->
+      <div *ngIf="activeSection === 'home'" class="section-content">
+        <div class="welcome-card">
+          <h2>Welcome to SkillConnect</h2>
+          <p>Find the perfect service provider for your needs</p>
+        </div>
+
+        <div class="service-categories">
+          <h3>Popular Services</h3>
+          <div class="category-grid">
+            <div class="category-card">
+              <div class="category-icon">🔧</div>
+              <h4>Plumber</h4>
+              <p>Expert plumbing services</p>
+            </div>
+            <div class="category-card">
+              <div class="category-icon">⚡</div>
+              <h4>Electrician</h4>
+              <p>Electrical repairs & installations</p>
+            </div>
+            <div class="category-card">
+              <div class="category-icon">🪚</div>
+              <h4>Carpenter</h4>
+              <p>Woodwork & furniture</p>
+            </div>
+            <div class="category-card">
+              <div class="category-icon">🎨</div>
+              <h4>Painter</h4>
+              <p>Professional painting services</p>
+            </div>
+            <div class="category-card">
+              <div class="category-icon">🧱</div>
+              <h4>Mason</h4>
+              <p>Construction & masonry</p>
+            </div>
+            <div class="category-card">
+              <div class="category-icon">❄️</div>
+              <h4>AC Technician</h4>
+              <p>AC repair & maintenance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Section -->
+      <div *ngIf="activeSection === 'services'" class="section-content">
+        <div class="section-header">
+          <h2>All Services</h2>
+          <p>Browse all available services</p>
+        </div>
+        <div class="coming-soon">
+          <p>Service listings coming soon...</p>
+        </div>
+      </div>
+
+      <!-- Requests Section -->
+      <div *ngIf="activeSection === 'requests'" class="section-content">
+        <div class="section-header">
+          <h2>My Requests</h2>
+          <p>Track your service requests</p>
+        </div>
+        <div class="coming-soon">
+          <p>Your requests will appear here...</p>
+        </div>
+      </div>
+
+      <!-- Profile Section -->
+      <div *ngIf="activeSection === 'profile'" class="section-content">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <span class="avatar-icon">👤</span>
+            </div>
+            <h2>{{ currentUser?.fullName }}</h2>
+            <p class="user-type-badge" [class.service-provider]="currentUser?.customerType === 'service-provider'">
+              {{ currentUser?.customerType === 'service-provider' ? 'Service Provider' : 'Customer' }}
+            </p>
+          </div>
+
+          <div class="profile-info">
+            <div class="info-row">
+              <span class="info-label">Email:</span>
+              <span class="info-value">{{ currentUser?.email }}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Mobile Number:</span>
+              <span class="info-value">{{ currentUser?.mobileNumber }}</span>
+            </div>
+            <div class="info-row" *ngIf="currentUser?.serviceType">
+              <span class="info-label">Service Type:</span>
+              <span class="info-value">{{ currentUser?.serviceType }}</span>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="btn-logout" (click)="logout()">
+              <span class="logout-icon">🚪</span>
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
