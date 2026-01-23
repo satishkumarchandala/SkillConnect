@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -12,17 +12,23 @@ export class Home implements OnInit {
   activeSection = 'home';
   currentUser: any = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
-    // Get current user from session storage
-    const userStr = sessionStorage.getItem('currentUser');
-    if (!userStr) {
-      // If no user is logged in, redirect to login
-      this.router.navigate(['/login']);
-      return;
+    // Only access sessionStorage in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      // Get current user from session storage
+      const userStr = sessionStorage.getItem('currentUser');
+      if (!userStr) {
+        // If no user is logged in, redirect to login
+        this.router.navigate(['/login']);
+        return;
+      }
+      this.currentUser = JSON.parse(userStr);
     }
-    this.currentUser = JSON.parse(userStr);
   }
 
   setActiveSection(section: string) {
@@ -30,7 +36,9 @@ export class Home implements OnInit {
   }
 
   logout() {
-    sessionStorage.removeItem('currentUser');
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.removeItem('currentUser');
+    }
     this.router.navigate(['/login']);
   }
 }

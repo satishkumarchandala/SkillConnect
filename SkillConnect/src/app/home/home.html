@@ -16,7 +16,8 @@
             Home
           </a>
         </li>
-        <li>
+        <!-- Show Services only for customers -->
+        <li *ngIf="currentUser?.customerType === 'customer'">
           <a 
             [class.active]="activeSection === 'services'" 
             (click)="setActiveSection('services')" 
@@ -25,7 +26,8 @@
             Services
           </a>
         </li>
-        <li>
+        <!-- Show Requests only for service providers -->
+        <li *ngIf="currentUser?.customerType === 'service-provider'">
           <a 
             [class.active]="activeSection === 'requests'" 
             (click)="setActiveSection('requests')" 
